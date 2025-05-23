@@ -43,8 +43,6 @@ echo "dns_cloudflare_api_token = YOUR_CLOUDFLARE_API_TOKEN" > /etc/cloudflare/sh
 
 Replace \`YOUR_CLOUDFLARE_API_TOKEN\` with your actual token.
 
----
-
 ### 4. Obtain the SSL Certificate
 ```bash
 certbot certonly --register-unsafely-without-email \
@@ -53,8 +51,6 @@ certbot certonly --register-unsafely-without-email \
   -d shinobi.yourdomain.com \
   --dns-cloudflare-propagation-seconds 60
 ```
-
----
 
 ### 5. Configure Shinobi
 
