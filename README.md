@@ -19,71 +19,71 @@ This guide walks you through securing your **Shinobi CCTV system** with a **free
 > All commands must be run as `root` or using `sudo`.
 
 ### 1. Update the System
-\`\`\`bash
+```bash
 apt-get update && apt-get dist-upgrade
-\`\`\`
+```
 
 ### 2. Install Certbot and DNS Plugin
-\`\`\`bash
+```bash
 apt install -y certbot python3-certbot-dns-cloudflare
-\`\`\`
+```
 
 ### 3. Prepare Cloudflare Credentials
-\`\`\`bash
+```bash
 mkdir -p /etc/cloudflare
 chmod 700 /etc/cloudflare
 touch /etc/cloudflare/shinobi.yourdomain.com.ini
 chmod 600 /etc/cloudflare/shinobi.yourdomain.com.ini
-\`\`\`
+```
 
 Save your Cloudflare API token:
-\`\`\`bash
+```bash
 echo "dns_cloudflare_api_token = YOUR_CLOUDFLARE_API_TOKEN" > /etc/cloudflare/shinobi.yourdomain.com.ini
-\`\`\`
+```
 
 Replace \`YOUR_CLOUDFLARE_API_TOKEN\` with your actual token.
 
 ---
 
 ### 4. Obtain the SSL Certificate
-\`\`\`bash
+```bash
 certbot certonly --register-unsafely-without-email \
   --dns-cloudflare \
   --dns-cloudflare-credentials /etc/cloudflare/shinobi.yourdomain.com.ini \
   -d shinobi.yourdomain.com \
   --dns-cloudflare-propagation-seconds 60
-\`\`\`
+```
 
 ---
 
 ### 5. Configure Shinobi
 
 #### Stop Shinobi:
-\`\`\`bash
+```bash
 pm2 stop /opt/Shinobi/camera.js && pm2 stop /opt/Shinobi/cron.js
-\`\`\`
+```
 
 #### Edit Configuration:
-\`\`\`bash
+```bash
 cd /opt/Shinobi/
 nano conf.json
-\`\`\`
+```
 
 Update the \`"ssl"\` section:
-\`\`\`json
+```json
 "ssl": {
   "key":"/etc/letsencrypt/live/shinobi.yourdomain.com/privkey.pem",
   "cert":"/etc/letsencrypt/live/shinobi.yourdomain.com/fullchain.pem",
   "port": 443
 }
-\`\`\`
+```
 
 Save and exit.
 
 #### Restart Shinobi:
-\`\`\`bash
+```bash
 pm2 start /opt/Shinobi/camera.js && pm2 start /opt/Shinobi/cron.js
-\`\`\`
+```
 
 ---
 
@@ -91,9 +91,9 @@ pm2 start /opt/Shinobi/camera.js && pm2 start /opt/Shinobi/cron.js
 
 Visit your Shinobi instance in the browser:
 
-\`\`\`
+```
 https://shinobi.yourdomain.com
-\`\`\`
+```
 
 You should now see your dashboard secured with HTTPS. 🎉
 
@@ -102,9 +102,9 @@ You should now see your dashboard secured with HTTPS. 🎉
 ## 🧩 Additional Tips
 
 - Automate renewal by adding a cron job:
-  \`\`\`bash
+  ```bash
   echo "0 3 * * * certbot renew --quiet && pm2 restart all" >> /etc/crontab
-  \`\`\`
+  ```
 - Use a reverse proxy like Nginx if needed for advanced TLS settings.
 - Keep your Cloudflare API token secure and with minimal permissions.
 
