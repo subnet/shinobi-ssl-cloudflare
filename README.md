@@ -99,7 +99,7 @@ You should now see your dashboard secured with HTTPS. 🎉
 
 - Certbot should renew the certificate automatically, but you can set a cron if you want
   ```bash
-  echo "0 3 * * * certbot renew --quiet && pm2 restart all" >> /etc/crontab
+  0 3 * * * certbot renew --quiet && pm2 restart all
   ```
 - Use a reverse proxy like Nginx if needed for advanced TLS settings.
 - Keep your Cloudflare API token secure and with minimal permissions.
