@@ -65,7 +65,7 @@ cd /opt/Shinobi/
 nano conf.json
 ```
 
-Update the \`"ssl"\` section:
+Update (or add) the "ssl" section:
 ```json
 "ssl": {
   "key":"/etc/letsencrypt/live/shinobi.yourdomain.com/privkey.pem",
