@@ -6,9 +6,9 @@ This guide walks you through securing your **Shinobi CCTV system** with a **free
 
 ## 🚀 Why Use Cloudflare DNS Validation?
 
-- ✅ No need to open ports on your firewall/router  
-- ✅ Works even with non-public, local-only domains  
-- ✅ Fully automated certificate issuance via Cloudflare API  
+ ✅ No need to open ports on your firewall/router  
+ ✅ Works even with non-public, local-only domains  
+ ✅ Fully automated certificate issuance via Cloudflare API  
 
 > 💡 You must already have a domain on Cloudflare and an API token created with DNS edit permissions.
 
