@@ -112,7 +112,7 @@ You should now see your dashboard secured with HTTPS. 🎉
 
 ## 📄 License
 
-This guide is provided under the MIT License. Feel free to fork and adapt!
+This guide is provided under the WTFPL License (https://www.wtfpl.net/)
 
 ---
 
