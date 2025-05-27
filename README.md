@@ -97,11 +97,11 @@ You should now see your dashboard secured with HTTPS. 🎉
 
 ## 🧩 Additional Tips
 
-- Certbot should renew the certificate automatically in /etc/cron.d/certbot:
+Certbot should renew the certificate automatically in /etc/cron.d/certbot:
 ```bash
 0 */12 * * * root test -x /usr/bin/certbot -a \! -d /run/systemd/system && perl -e 'sleep int(rand(43200))' && certbot -q renew --no-random-sleep-on-renew
 ```
-- but you can set a cron if you want
+but you can set a cron if you want
   ```bash
   0 3 * * * certbot renew --quiet && pm2 restart all
   ```
